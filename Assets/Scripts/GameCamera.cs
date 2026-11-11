@@ -3,37 +3,37 @@ using UnityEngine.InputSystem;
 
 public class GameCamera : MonoBehaviour
 {
-    [SerializeField] PlayerInput playerinput;
+    [SerializeField] PlayerInput PlayerInput;
 
-    [SerializeField] Transform looktarget;
+    [SerializeField] Transform LookTarget;
 
-    [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 Offset;
 
-    [SerializeField] float distance;
+    [SerializeField] float Distance;
 
-    [SerializeField] float rotatesp;
+    [SerializeField] float RotateSpeed;
 
-    float pitch;
-    float yaw;
+    float Pitch;
+    float Yaw;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        yaw = 90.0f;
-        pitch = 0.0f;  
+        Yaw = 90.0f;
+        Pitch = 0.0f;  
     }
 
     // Update is called once per frame
     void Update()
     {
-        var lookvec = playerinput.actions["Look"].ReadValue<Vector2>();
-        yaw += lookvec.x * rotatesp * Time.deltaTime;
-        pitch -= lookvec.y * rotatesp * Time.deltaTime;
+        var lookvec = PlayerInput.actions["Look"].ReadValue<Vector2>();
+        Yaw += lookvec.x * RotateSpeed * Time.deltaTime;
+        Pitch -= lookvec.y * RotateSpeed * Time.deltaTime;
 
-        var target = looktarget.position + offset;
-        var rotaition=Quaternion.Euler(pitch, yaw, 0);
-        var posisiton = rotaition * new Vector3(0, 0, -distance) + target;
+        var target = LookTarget.position + Offset;
+        var rotaition=Quaternion.Euler(Pitch, Yaw, 0);
+        var posisiton = rotaition * new Vector3(0, 0, -Distance) + target;
 
         transform.rotation = rotaition;
         transform.position = posisiton;
