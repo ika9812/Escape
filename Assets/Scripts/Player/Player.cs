@@ -52,6 +52,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(!GamaManager.Instance.IsPlaying)
+        {
+            return;
+        }
         StateMachine.Update();
         Move.Gravity();
     }
