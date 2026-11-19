@@ -19,6 +19,8 @@ public class PlayerInputHandle
         PlayerInput.actions["Move"].performed += OnMove;
         PlayerInput.actions["Move"].canceled += OnMove;
         PlayerInput.actions["Jump"].performed += OnJump;
+        PlayerInput.actions["Jump"].canceled += OnCanselJump;
+
     }
 
     public void DisableInput()
@@ -26,6 +28,8 @@ public class PlayerInputHandle
         PlayerInput.actions["Move"].performed -= OnMove;
         PlayerInput.actions["Move"].canceled -= OnMove;
         PlayerInput.actions["Jump"].performed -= OnJump;
+        PlayerInput.actions["Jump"].canceled -= OnCanselJump;
+
     }
 
     void OnMove(InputAction.CallbackContext context)
@@ -35,7 +39,18 @@ public class PlayerInputHandle
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-        IsJump = true;
+
+        if (context.performed)
+        {
+            IsJump = true;
+        }
+    }
+
+    public void OnCanselJump(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            IsJump = false;
+        }
     }
 }

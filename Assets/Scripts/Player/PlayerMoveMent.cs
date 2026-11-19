@@ -12,7 +12,7 @@ public class PlayerMoveMent
 
     PlayerStatus Status;
 
-    private PlayerMoveMent(CharacterController characterController,PlayerInput playerInput,PlayerInputHandle playerInputHandle,PlayerStatus playerStatus)
+    public PlayerMoveMent(CharacterController characterController,PlayerInput playerInput,PlayerInputHandle playerInputHandle,PlayerStatus playerStatus)
     {
         CharacterController = characterController;
         PlayerInput = playerInput;
@@ -21,15 +21,11 @@ public class PlayerMoveMent
     }
 
 
-    private void Move(Transform transform)
+    public void Move(Transform transform)
     {
-        Camera inputCamera = PlayerInput.GetComponent<Camera>();
 
-        if (inputCamera == null)
-            return;
-
-        Vector3 cameraForward = inputCamera.transform.forward;
-        Vector3 cameraRight = inputCamera.transform.right;
+        Vector3 cameraForward = PlayerInput.camera.transform.forward;
+        Vector3 cameraRight = PlayerInput.camera.transform.right;
 
         cameraForward.y = 0f;
         cameraRight.y = 0f;
