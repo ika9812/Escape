@@ -7,6 +7,9 @@ public class MinimapCameraController : MonoBehaviour
 
     [SerializeField]private float Height = 30f;
 
+    [SerializeField] private float Front = 30f;
+
+
     //[SerializeField] private RectTransform PlayerIcon;
 
     private void LateUpdate()
@@ -16,7 +19,7 @@ public class MinimapCameraController : MonoBehaviour
         Vector3 position = Player.position;
 
         transform.position = new Vector3(
-            position.x,
+            position.x + Front,
             position.y + Height,
             position.z
         );
